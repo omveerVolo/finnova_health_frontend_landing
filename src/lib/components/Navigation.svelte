@@ -3,7 +3,7 @@
 	import { Phone, Menu, X } from '@lucide/svelte';
 	import { fly, fade } from 'svelte/transition';
 	import { page_context } from '../state/PageContex.svelte';
-	import { trackEvent } from '$lib/utility/analytics'; // Imported analytics
+	import { trackEvent } from '$lib/utility/analytics';
 
 	let isMenuOpen = $state(false);
 	let currentPath = $derived(page.url.hash.replace('#', '') || 'top');
@@ -20,10 +20,25 @@
 		}
 	};
 
-	const handleNavClick = (id: string, label: string) => {
-		// Track the click before moving
-		trackEvent(`Header ${label} Link`, { category: 'navigation' });
+	const handleModeToggle = (isMobile = false) => {
+		const label = isPatientMode ? 'For Hospitals' : 'For Patients';
+		trackEvent(`${isMobile ? 'Nav' : 'Header'}: ${label} Toggle`, { category: 'navigation' });
 
+		// 1. Change the global context
+		page_context.change();
+
+		if (isMobile) isMenuOpen = false;
+
+		// 2. Always scroll to the benefits section when switching modes
+		// Timeout ensures Svelte updates the DOM before we measure the scroll position
+		setTimeout(() => {
+			scrollToId('our-benefits');
+			history.pushState(null, '', '#our-benefits');
+		}, 150);
+	};
+
+	const handleNavClick = (id: string, label: string) => {
+		trackEvent(`Header ${label} Link`, { category: 'navigation' });
 		isMenuOpen = false;
 		scrollToId(id);
 		history.pushState(null, '', `#${id}`);
@@ -61,13 +76,7 @@
 			{/each}
 
 			<button
-				onclick={() => {
-					const label = isPatientMode ? 'For Hospitals' : 'For Patients';
-					trackEvent(`Header ${label} Link`, { category: 'navigation' });
-
-					page_context.change();
-					setTimeout(() => scrollToId('our-benefits'), 100);
-				}}
+				onclick={() => handleModeToggle(false)}
 				class="min-w-[110px] cursor-pointer text-left text-sm text-slate-600 transition-all hover:text-[#ad5389]"
 			>
 				{isPatientMode ? 'For Hospitals' : 'For Patients'}
@@ -105,10 +114,7 @@
 	<div
 		transition:fade={{ duration: 200 }}
 		class="fixed inset-0 z-[60] bg-slate-900/40 backdrop-blur-sm lg:hidden"
-		onclick={() => {
-			isMenuOpen = false;
-			trackEvent('Mobile Menu Overlay Click');
-		}}
+		onclick={() => (isMenuOpen = false)}
 	></div>
 
 	<div
@@ -116,11 +122,8 @@
 		class="fixed top-0 right-0 z-[70] h-full w-[300px] bg-white p-8 shadow-2xl lg:hidden"
 	>
 		<button
-			class="absolute top-6 right-6 cursor-pointer p-1 text-slate-800 hover:text-[#ad5389]"
-			onclick={() => {
-				isMenuOpen = false;
-				trackEvent('Mobile Menu Close');
-			}}
+			class="absolute top-6 right-6 cursor-pointer p-1 text-slate-800"
+			onclick={() => (isMenuOpen = false)}
 		>
 			<X size={32} />
 		</button>
@@ -131,25 +134,19 @@
 					href="#{item.id}"
 					onclick={(e) => {
 						e.preventDefault();
-						trackEvent(`Nav: ${item.label}`);
 						handleNavClick(item.id, item.label);
 					}}
-					class="text-2xl font-bold {currentPath === item.id ? 'text-[#ad5389]' : 'text-slate-800'}"
+					class="text-2xl font-semibold {currentPath === item.id
+						? 'text-[#ad5389]'
+						: 'text-slate-800'}"
 				>
 					{item.label}
 				</a>
 			{/each}
 
 			<button
-				onclick={() => {
-					const label = isPatientMode ? 'For Hospitals' : 'For Patients';
-					trackEvent(`Nav: ${label}`);
-					page_context.change();
-					isMenuOpen = false;
-					const target = isPatientMode ? 'hospital-network' : 'our-benefits';
-					setTimeout(() => scrollToId(target), 300);
-				}}
-				class="text-left text-2xl font-bold text-slate-800"
+				onclick={() => handleModeToggle(true)}
+				class="text-left text-2xl font-semibold text-slate-800"
 			>
 				{isPatientMode ? 'For Hospitals' : 'For Patients'}
 			</button>
@@ -160,7 +157,7 @@
 					isMenuOpen = false;
 					scrollToId('contact-form');
 				}}
-				class="mt-auto flex w-full items-center justify-center gap-3 rounded-2xl bg-[#ad5389] py-5 text-lg font-bold text-white"
+				class="mt-auto flex w-full items-center justify-center gap-3 rounded-2xl bg-[#ad5389] py-5 text-lg font-semibold text-white shadow-lg active:scale-95"
 			>
 				<Phone size={20} fill="currentColor" />
 				<span>Contact Us</span>
