@@ -15,11 +15,14 @@
 		} else {
 			const element = document.getElementById(id);
 			if (element) {
-				element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				// "center" ensures the form is vertically centered in the screen
+				element.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center'
+				});
 			}
 		}
 	};
-
 	const handleModeToggle = (isMobile = false) => {
 		const label = isPatientMode ? 'For Hospitals' : 'For Patients';
 		trackEvent(`${isMobile ? 'Nav' : 'Header'}: ${label} Toggle`, { category: 'navigation' });

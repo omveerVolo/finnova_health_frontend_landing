@@ -17,6 +17,9 @@
 
 	const handleSubmit = () => {
 		// 3. Track Event with Data
+		if (!fullName || !phoneNumber || !hospitalName || !cityName) {
+			return;
+		}
 		trackEvent('generate_lead', {
 			category: 'Contact Form',
 			label: 'Finnova Landing Page',
