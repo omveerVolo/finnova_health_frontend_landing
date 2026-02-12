@@ -27,19 +27,14 @@
 		const label = isPatientMode ? 'For Hospitals' : 'For Patients';
 		trackEvent(`${isMobile ? 'Nav' : 'Header'}: ${label} Toggle`, { category: 'navigation' });
 
-		// 1. Change the global context
+		// 1. Change the global context (switches the content)
 		page_context.change();
 
+		// 2. Close mobile menu if applicable
 		if (isMobile) isMenuOpen = false;
 
-		// 2. Always scroll to the benefits section when switching modes
-		// Timeout ensures Svelte updates the DOM before we measure the scroll position
-		setTimeout(() => {
-			scrollToId('our-benefits');
-			history.pushState(null, '', '#our-benefits');
-		}, 150);
+		// SCROLL REMOVED: We no longer call scrollToId or update the URL hash here.
 	};
-
 	const handleNavClick = (id: string, label: string) => {
 		trackEvent(`Header ${label} Link`, { category: 'navigation' });
 		isMenuOpen = false;
