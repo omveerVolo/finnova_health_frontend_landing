@@ -1,4 +1,6 @@
 <script lang="ts">
+	export const prerender = true;
+	export const trailingSlash = 'always';
 	import './layout.css';
 	import Navigation from '$lib/components/Navigation.svelte';
 
