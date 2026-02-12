@@ -88,7 +88,7 @@
 			<button
 				onclick={() => {
 					trackEvent('Header Contact Us Button', { category: 'conversion' });
-					scrollToId('contact-form');
+					// scrollToId('contact-form');
 				}}
 				class="group flex cursor-pointer items-center gap-2 rounded-xl bg-[#ad5389] px-6 py-2.5 text-sm text-white transition-all hover:shadow-lg active:scale-95"
 			>
