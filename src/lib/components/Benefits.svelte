@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { page_context } from '$lib/state/PageContex.svelte';
+	import { reveal } from '$lib/utility/reveal';
 	import { ChevronDown } from '@lucide/svelte';
 	import { fade, fly } from 'svelte/transition';
 
 	const theme = {
 		bg: 'bg-[#f8fafc]',
 		cardBg: 'bg-white',
-		accent: 'bg-[#ad5389]',
-		textMain: 'text-[#ad5389]',
+		accent: 'bg-brand',
+		textMain: 'text-brand',
 		textMuted: 'text-slate-500',
 		border: 'border-slate-200'
 	};
@@ -73,7 +74,10 @@
 	});
 </script>
 
-<section id="our-benefits" class="w-full {theme.bg} bg-gray-100 px-6 pt-6 pb-12 lg:px-16 lg:pt-6">
+<section
+	id="our-benefits"
+	class="w-full {theme.bg} bg-gray-100 px-6 pt-6 pb-16 lg:px-16 lg:pt-6 lg:pb-20"
+>
 	<div class="mx-auto max-w-[1300px]">
 		<div class="flex justify-center pb-8 text-gray-200 lg:pb-7" in:fade>
 			<div
@@ -86,7 +90,7 @@
 			{#key pageContext}
 				<div
 					in:fly={{ y: 10, duration: 400 }}
-					class="mb-8 inline-flex items-center gap-2 rounded-full border border-[#ad5389]/10 bg-[#ad5389]/5 px-4 py-1"
+					class="mb-8 inline-flex items-center gap-2 rounded-full border border-brand/10 bg-brand/5 px-4 py-1"
 				>
 					<span class="text-[10px] font-black tracking-[0.2em] {theme.textMain} uppercase">
 						{dynamicLabels.tag}
@@ -97,8 +101,7 @@
 					{dynamicLabels.main}
 					<span class="relative inline-block">
 						<span class="relative z-10 {theme.textMain}">{dynamicLabels.accent}</span>
-						<span
-							class="absolute bottom-1 left-0 -z-10 h-2 w-full bg-[#ad5389]/10 lg:bottom-2 lg:h-3"
+						<span class="absolute bottom-1 left-0 -z-10 h-2 w-full bg-brand/10 lg:bottom-2 lg:h-3"
 						></span>
 					</span>
 				</h3>
@@ -117,10 +120,11 @@
 			{#if activeContent.data[0]}
 				<div
 					class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border {theme.border} {theme.cardBg} p-8 transition-all hover:shadow-2xl lg:col-span-7 lg:row-span-2 lg:p-12"
+					use:reveal
 				>
 					<div class="flex flex-col gap-6">
 						<div
-							class="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 transition-colors group-hover:bg-[#ad5389]/5 lg:h-20 lg:w-20"
+							class="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 transition-colors group-hover:bg-brand/5 lg:h-20 lg:w-20"
 						>
 							<img
 								src={activeContent.images[0]}
@@ -146,10 +150,11 @@
 
 			{#each activeContent.data.slice(1) as benefit, i}
 				<div
-					class="group flex items-center gap-6 rounded-3xl border {theme.border} {theme.cardBg} p-6 transition-all hover:border-[#ad5389]/30 hover:shadow-xl lg:col-span-5 lg:p-10"
+					class="group flex items-center gap-6 rounded-3xl border {theme.border} {theme.cardBg} p-6 transition-all hover:border-brand/30 hover:shadow-xl lg:col-span-5 lg:p-10"
+					use:reveal={{ delay: i * 100 }}
 				>
 					<div
-						class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-50 transition-colors group-hover:bg-[#ad5389]/5 lg:h-16 lg:w-16"
+						class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-50 transition-colors group-hover:bg-brand/5 lg:h-16 lg:w-16"
 					>
 						<img
 							src={activeContent.images[i + 1]}

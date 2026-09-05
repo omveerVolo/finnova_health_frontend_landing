@@ -21,6 +21,7 @@
 	<ContactCard />
 	<Benefits />
 	<Steps />
+	<Hospital />
 
 	{#if page_context.current == 'patients'}
 		<TestimonialsPatients />

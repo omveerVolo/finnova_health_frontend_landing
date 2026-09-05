@@ -43,7 +43,7 @@
 		</button>
 
 		<div class="mb-8 border-b border-slate-100 pb-6">
-			<h2 class="mb-2 text-sm font-bold tracking-[0.2em] text-[#ad5389] uppercase">Legal</h2>
+			<h2 class="mb-2 text-sm font-bold tracking-[0.2em] text-brand uppercase">Legal</h2>
 			<h3 class="text-3xl font-bold text-slate-900">Terms & Conditions</h3>
 		</div>
 

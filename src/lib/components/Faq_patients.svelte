@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reveal } from '$lib/utility/reveal';
 	const faqs = [
 		{
 			id: 1,
@@ -164,17 +165,16 @@
 	<div class="mx-auto max-w-[1000px]">
 		<div class="mb-16 text-center">
 			<div
-				class="mb-4 inline-flex items-center gap-2 rounded-full border border-[#ad5389]/10 bg-[#ad5389]/5 px-4 py-1"
+				class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/10 bg-brand/5 px-4 py-1"
 			>
-				<span class="text-[10px] font-black tracking-[0.2em] text-[#ad5389] uppercase">Support</span
-				>
+				<span class="text-[10px] font-black tracking-[0.2em] text-brand uppercase">Support</span>
 			</div>
-			<h3 class="text-4xl font-bold text-[#390265] lg:text-5xl">
-				FAQ for <span class="text-[#ad5389]">Patients</span>
+			<h3 class="text-4xl font-bold tracking-tight text-brand-deep lg:text-5xl">
+				FAQ for <span class="text-brand">Patients</span>
 			</h3>
 		</div>
 
-		<div class="flex flex-col border-t border-slate-100">
+		<div class="flex flex-col border-t border-slate-100" use:reveal>
 			{#each visibleFaqs as faq (faq.id)}
 				<div
 					class="border-b border-slate-100 transition-colors"
@@ -187,7 +187,7 @@
 						<span
 							class="text-lg font-medium tracking-tight transition-colors lg:text-xl {openId ===
 							faq.id
-								? 'text-[#ad5389]'
+								? 'text-brand'
 								: 'text-slate-900'}"
 						>
 							{faq.question}
@@ -196,8 +196,8 @@
 						<div
 							class="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-300
                             {openId === faq.id
-								? 'rotate-180 border-[#ad5389] bg-[#ad5389] shadow-lg shadow-[#ad5389]/20'
-								: 'border-slate-200 bg-white group-hover:border-[#ad5389]'}"
+								? 'rotate-180 border-brand bg-brand shadow-lg shadow-brand/20'
+								: 'border-slate-200 bg-white group-hover:border-brand'}"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -209,9 +209,7 @@
 								stroke-width="2.5"
 								stroke-linecap="round"
 								stroke-linejoin="round"
-								class={openId === faq.id
-									? 'text-white'
-									: 'text-slate-400 group-hover:text-[#ad5389]'}
+								class={openId === faq.id ? 'text-white' : 'text-slate-400 group-hover:text-brand'}
 							>
 								<path d="m6 9 6 6 6-6" />
 							</svg>
@@ -237,7 +235,7 @@
 			<div class="mt-16 flex justify-center">
 				<button
 					onclick={() => (showAll = !showAll)}
-					class="group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-full border border-[#390265] bg-white px-10 py-4 text-sm font-bold text-[#390265] transition-all hover:bg-[#390265] hover:text-white"
+					class="group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-full border border-brand-deep bg-white px-10 py-4 text-sm font-bold text-brand-deep transition-all hover:bg-brand-deep hover:text-white"
 				>
 					<span>{showAll ? 'SHOW LESS' : 'SHOW ALL QUESTIONS'}</span>
 					<svg

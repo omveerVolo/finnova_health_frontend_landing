@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { reveal } from '$lib/utility/reveal';
+
 	const testimonials = [
 		{
 			name: 'Jitendra and Priya Bhargav',
@@ -37,13 +39,13 @@
 
 <section class="w-full bg-[#f8fafc] px-6 py-24 lg:px-16" id="testimonials">
 	<div class="max-w-2xl pb-12">
-		<div class="mb-4 inline-flex items-center gap-2 rounded-full bg-[#ad5389]/10 px-4 py-1">
-			<span class="text-[10px] font-black tracking-[0.2em] text-[#ad5389] uppercase">
+		<div class="mb-4 inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-1">
+			<span class="text-[10px] font-black tracking-[0.2em] text-brand uppercase">
 				Testimonials
 			</span>
 		</div>
-		<h2 class="text-4xl font-bold tracking-tight text-[#390265] lg:text-5xl">
-			Real Stories of <span class="text-[#ad5389]">Recovery & Hope</span>
+		<h2 class="text-4xl font-bold tracking-tight text-brand-deep lg:text-5xl">
+			Real Stories of <span class="text-brand">Recovery & Hope</span>
 		</h2>
 		<p class="mt-4 text-lg font-medium text-slate-600">
 			See how Finnova has helped thousands of families focus on healing instead of hospital bills.
@@ -57,7 +59,8 @@
 			{#each testimonials as t, i}
 				<div class="w-full shrink-0 snap-start md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
 					<div
-						class="group flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:shadow-2xl hover:shadow-[#390265]/5"
+						class="group flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:shadow-2xl hover:shadow-brand-deep/5"
+						use:reveal={{ delay: i * 80 }}
 					>
 						<div>
 							<div class="mb-6 flex items-center justify-between">
@@ -71,7 +74,7 @@
 									{/each}
 								</div>
 								<div
-									class="rounded-lg bg-[#ad5389]/5 px-3 py-1 text-[10px] font-black tracking-wider text-[#ad5389] uppercase ring-1 ring-[#ad5389]/20 ring-inset"
+									class="rounded-lg bg-brand/5 px-3 py-1 text-[10px] font-black tracking-wider text-brand uppercase ring-1 ring-brand/20 ring-inset"
 								>
 									{t.disease}
 								</div>
@@ -92,7 +95,7 @@
 									<button
 										type="button"
 										onclick={() => toggleExpand(i)}
-										class="mb-6 block cursor-pointer text-sm font-bold text-[#ad5389] underline-offset-4 hover:underline"
+										class="mb-6 block cursor-pointer text-sm font-bold text-brand underline-offset-4 hover:underline"
 									>
 										{expandedStates[i] ? 'Show Less' : 'Read Full Story'}
 									</button>
@@ -102,12 +105,12 @@
 
 						<div class="flex items-center gap-4 border-t border-slate-100 pt-6">
 							<div
-								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#390265] text-sm font-bold text-white uppercase"
+								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-deep text-sm font-bold text-white uppercase"
 							>
 								{t.name?.substring(0, 1)}
 							</div>
 							<div class="overflow-hidden">
-								<h4 class="truncate text-base font-bold text-[#390265]">
+								<h4 class="truncate text-base font-bold text-brand-deep">
 									{t.name}
 								</h4>
 								<p class="truncate text-xs font-semibold tracking-wider text-slate-400 uppercase">

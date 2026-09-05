@@ -43,7 +43,7 @@
 <div class="mt-3 bg-slate-100/50 p-1">
 	<div id="contact-form" class="relative z-20 px-2 pb-4 lg:px-16 lg:pb-4">
 		<div
-			class="relative mx-auto max-w-[1600px] overflow-hidden rounded-2xl border-[#723158] bg-[#ad5389] px-6 py-8 shadow-xl lg:px-10 lg:py-10"
+			class="relative mx-auto max-w-[1600px] overflow-hidden rounded-2xl border-brand-border bg-brand px-6 py-8 shadow-xl lg:px-10 lg:py-10"
 		>
 			<div class="pointer-events-none absolute -top-4 -right-4 opacity-[0.07]">
 				<Phone size={120} strokeWidth={1} class="text-white" />
@@ -68,7 +68,7 @@
 					<label
 						class="group flex items-center gap-3 rounded-2xl border border-white/5 bg-white/10 px-5 py-4 transition-all focus-within:bg-white"
 					>
-						<User size={18} class="shrink-0 text-white/50 group-focus-within:text-[#ad5389]" />
+						<User size={18} class="shrink-0 text-white/50 group-focus-within:text-brand" />
 						<input
 							type="text"
 							bind:value={fullName}
@@ -80,7 +80,7 @@
 					<label
 						class="group flex items-center gap-3 rounded-2xl border border-white/5 bg-white/10 px-5 py-4 transition-all focus-within:bg-white"
 					>
-						<Phone size={18} class="shrink-0 text-white/50 group-focus-within:text-[#ad5389]" />
+						<Phone size={18} class="shrink-0 text-white/50 group-focus-within:text-brand" />
 						<input
 							type="text"
 							bind:value={phoneNumber}
@@ -92,7 +92,7 @@
 					<label
 						class="group flex items-center gap-3 rounded-2xl border border-white/5 bg-white/10 px-5 py-4 transition-all focus-within:bg-white"
 					>
-						<Building2 size={18} class="shrink-0 text-white/50 group-focus-within:text-[#ad5389]" />
+						<Building2 size={18} class="shrink-0 text-white/50 group-focus-within:text-brand" />
 						<input
 							type="text"
 							bind:value={hospitalName}
@@ -104,7 +104,7 @@
 					<label
 						class="group flex items-center gap-3 rounded-2xl border border-white/5 bg-white/10 px-5 py-4 transition-all focus-within:bg-white"
 					>
-						<MapPin size={18} class="shrink-0 text-white/50 group-focus-within:text-[#ad5389]" />
+						<MapPin size={18} class="shrink-0 text-white/50 group-focus-within:text-brand" />
 						<input
 							type="text"
 							bind:value={cityName}
@@ -115,7 +115,7 @@
 
 					<button
 						onclick={handleSubmit}
-						class="flex h-full min-h-[56px] cursor-pointer items-center justify-center gap-3 rounded-2xl bg-white px-6 font-sans text-sm font-bold tracking-widest text-[#ad5389] uppercase transition-all hover:bg-slate-100 hover:shadow-lg active:scale-95 active:bg-slate-200"
+						class="flex h-full min-h-[56px] cursor-pointer items-center justify-center gap-3 rounded-2xl bg-white px-6 font-sans text-sm font-bold tracking-widest text-brand uppercase transition-all hover:bg-slate-100 hover:shadow-lg active:scale-95 active:bg-slate-200"
 					>
 						<span>{submitted ? 'Sent' : 'Contact'}</span>
 						<ArrowRight size={18} />

@@ -8,7 +8,6 @@
 	const currentYear = new Date().getFullYear();
 </script>
 
-<!-- <button class="div_sticky w-full"> Contact Us </button> -->
 <footer id="footer" class="w-full border-t border-slate-200 bg-[#f8fafc] px-6 py-12 lg:px-16">
 	<div class="mx-auto max-w-[1400px]">
 		<div class="flex flex-col items-center gap-8 text-center">
@@ -16,7 +15,7 @@
 				<li>
 					<button
 						onclick={() => (showTerms = true)}
-						class="cursor-pointer text-sm font-semibold tracking-wide text-slate-600 transition-colors hover:text-[#ad5389]"
+						class="cursor-pointer text-sm font-semibold tracking-wide text-slate-600 transition-colors hover:text-brand"
 					>
 						Terms of Use
 					</button>
@@ -24,7 +23,7 @@
 				<li>
 					<button
 						onclick={() => (showPrivacy = true)}
-						class="cursor-pointer text-sm font-semibold tracking-wide text-slate-600 transition-colors hover:text-[#ad5389]"
+						class="cursor-pointer text-sm font-semibold tracking-wide text-slate-600 transition-colors hover:text-brand"
 					>
 						Privacy Policy
 					</button>
@@ -46,7 +45,7 @@
 						href="https://volohealth.in/"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="ml-1 font-bold text-slate-900 transition-all hover:text-[#ad5389]"
+						class="ml-1 font-bold text-slate-900 transition-all hover:text-brand"
 					>
 						Volo Health Services Private Limited®.
 					</a>
@@ -72,22 +71,5 @@
 
 	.transition-transform {
 		transition-property: transform;
-	}
-	.div_sticky {
-		position: sticky;
-		/* Distance from the top of the screen where it should "lock" */
-		top: 20px;
-
-		/* Ensure it's on top of everything else */
-		z-index: 999;
-
-		/* Visuals */
-		display: block;
-		margin: 0 auto;
-		background-color: #c8668c; /* Pink from your image */
-		color: white;
-		padding: 12px 30px;
-
-		font-weight: bold;
 	}
 </style>

@@ -55,7 +55,7 @@
 	class="w-full overflow-hidden border-b border-b-slate-100 bg-white px-6 py-4 font-medium shadow-md md:px-16 md:py-5"
 >
 	<div class="mx-auto flex max-w-7xl items-center justify-between">
-		<img class="w-40" src="/finnova_logo.png" alt="logo" />
+		<img class="w-40" src="/finnova_logo.png" alt="Finnova" />
 
 		<div class="hidden items-center gap-8 lg:flex">
 			{#each staticNav as item (item.key)}
@@ -65,8 +65,8 @@
 						e.preventDefault();
 						handleNavClick(item.id, item.label);
 					}}
-					class="cursor-pointer text-sm transition-all hover:text-[#ad5389] {currentPath === item.id
-						? 'font-bold text-[#ad5389]'
+					class="cursor-pointer text-sm transition-all hover:text-brand {currentPath === item.id
+						? 'font-bold text-brand'
 						: 'text-slate-600'}"
 				>
 					{item.label}
@@ -75,7 +75,7 @@
 
 			<button
 				onclick={() => handleModeToggle(false)}
-				class="min-w-[110px] cursor-pointer text-left text-sm text-slate-600 transition-all hover:text-[#ad5389]"
+				class="min-w-[110px] cursor-pointer text-left text-sm text-slate-600 transition-all hover:text-brand"
 			>
 				{isPatientMode ? 'For Hospitals' : 'For Patients'}
 			</button>
@@ -83,9 +83,9 @@
 			<button
 				onclick={() => {
 					trackEvent('Header Contact Us Button', { category: 'conversion' });
-					// scrollToId('contact-form');
+					scrollToId('contact-form');
 				}}
-				class="group flex cursor-pointer items-center gap-2 rounded-xl bg-[#ad5389] px-6 py-2.5 text-sm text-white transition-all hover:shadow-lg active:scale-95"
+				class="group flex cursor-pointer items-center gap-2 rounded-xl bg-brand px-6 py-2.5 text-sm text-white transition-all hover:shadow-lg active:scale-95"
 			>
 				<Phone size={14} fill="currentColor" />
 				<span>Contact Us</span>
@@ -134,9 +134,7 @@
 						e.preventDefault();
 						handleNavClick(item.id, item.label);
 					}}
-					class="text-2xl font-semibold {currentPath === item.id
-						? 'text-[#ad5389]'
-						: 'text-slate-800'}"
+					class="text-2xl font-semibold {currentPath === item.id ? 'text-brand' : 'text-slate-800'}"
 				>
 					{item.label}
 				</a>
@@ -155,7 +153,7 @@
 					isMenuOpen = false;
 					scrollToId('contact-form');
 				}}
-				class="mt-auto flex w-full items-center justify-center gap-3 rounded-2xl bg-[#ad5389] py-5 text-lg font-semibold text-white shadow-lg active:scale-95"
+				class="mt-auto flex w-full items-center justify-center gap-3 rounded-2xl bg-brand py-5 text-lg font-semibold text-white shadow-lg active:scale-95"
 			>
 				<Phone size={20} fill="currentColor" />
 				<span>Contact Us</span>

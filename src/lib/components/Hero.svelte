@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page_context } from '$lib/state/PageContex.svelte';
+	import { reveal } from '$lib/utility/reveal';
+	import { ArrowRight } from '@lucide/svelte';
 
 	const patientsLg = [
 		'/heroImages/patients/D1.webp',
@@ -86,53 +88,81 @@
 	});
 </script>
 
-<section class="mx-auto w-full overflow-hidden" aria-label="Hero Carousel">
+<section class="mx-auto w-full overflow-hidden" aria-label="Hero">
 	<div
-		role="region"
-		aria-roledescription="carousel"
-		class="relative flex w-full cursor-grab active:cursor-grabbing"
-		onmousedown={handleStart}
-		onmousemove={handleMove}
-		onmouseup={handleEnd}
-		onmouseleave={handleEnd}
-		ontouchstart={handleStart}
-		ontouchmove={handleMove}
-		ontouchend={handleEnd}
+		class="mx-auto grid w-full max-w-7xl items-center gap-8 px-6 pt-6 lg:grid-cols-[1fr_1.15fr] lg:gap-10 lg:px-16 lg:pt-4"
 	>
-		<div
-			class="flex w-full"
-			style="
+		<div class="text-center lg:text-left" use:reveal>
+			<h1 class="text-4xl leading-tight font-bold tracking-tight text-slate-900 lg:text-5xl">
+				{pageContext === 'patients' ? 'Financial Care for' : 'Smart Solutions for'}
+				<span class="text-brand">{pageContext === 'patients' ? 'Patients' : 'Hospitals'}</span>
+			</h1>
+			<p class="mx-auto mt-4 max-w-md text-base text-slate-500 lg:mx-0 lg:text-lg">
+				Reimagined medical lending to be as
+				<span class="font-semibold text-slate-700">instant</span>
+				and <span class="font-semibold text-slate-700">transparent</span> as it should be.
+			</p>
+			<button
+				onclick={() =>
+					document
+						.getElementById('contact-form')
+						?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+				class="group mt-6 inline-flex cursor-pointer items-center gap-2 rounded-xl bg-brand px-7 py-3.5 text-sm font-semibold text-white transition-all hover:shadow-lg active:scale-95"
+			>
+				<span>Contact Us</span>
+				<ArrowRight size={16} class="transition-transform group-hover:translate-x-0.5" />
+			</button>
+		</div>
+
+		<div class="min-w-0" use:reveal={{ delay: 120 }}>
+			<div
+				role="region"
+				aria-roledescription="carousel"
+				class="relative flex w-full cursor-grab active:cursor-grabbing"
+				onmousedown={handleStart}
+				onmousemove={handleMove}
+				onmouseup={handleEnd}
+				onmouseleave={handleEnd}
+				ontouchstart={handleStart}
+				ontouchmove={handleMove}
+				ontouchend={handleEnd}
+			>
+				<div
+					class="flex w-full"
+					style="
                 transform: translateX(calc(-{currentImage * 100}% + {currentOffset}px));
                 transition: {isTransitioning && !isDragging
-				? 'transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
-				: 'none'};
+						? 'transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+						: 'none'};
             "
-			ontransitionend={handleTransitionEnd}
-		>
-			{#each slidesLg as _, i}
-				<div class="slide-viewport">
-					<div
-						class="hero-image-card"
-						style="
+					ontransitionend={handleTransitionEnd}
+				>
+					{#each slidesLg as _, i}
+						<div class="slide-viewport">
+							<div
+								class="hero-image-card"
+								style="
                             opacity: {currentImage === i ||
-						(currentImage === activeLg.length && i === 0)
-							? '1'
-							: '0'};
+								(currentImage === activeLg.length && i === 0)
+									? '1'
+									: '0'};
                             transform: scale({currentImage === i ? '1' : '0.95'});
                             transition: opacity 600ms ease, transform 600ms ease;
                         "
-					>
-						<picture class="h-full w-full">
-							<source srcset={slidesLg[i]} media="(min-width: 768px)" />
-							<img
-								src={slidesSm[i]}
-								alt="Slide {i + 1}"
-								class="pointer-events-none h-full w-full object-contain select-none"
-							/>
-						</picture>
-					</div>
+							>
+								<picture class="h-full w-full">
+									<source srcset={slidesLg[i]} media="(min-width: 768px)" />
+									<img
+										src={slidesSm[i]}
+										alt="Slide {i + 1}"
+										class="pointer-events-none h-full w-full object-contain select-none"
+									/>
+								</picture>
+							</div>
+						</div>
+					{/each}
 				</div>
-			{/each}
+			</div>
 		</div>
 	</div>
 </section>
@@ -164,7 +194,7 @@
 
 	@media (min-width: 768px) {
 		.slide-viewport {
-			padding: 0 100px;
+			padding: 0 24px;
 		}
 
 		.hero-image-card {

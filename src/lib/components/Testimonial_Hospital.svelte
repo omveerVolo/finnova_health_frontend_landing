@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { reveal } from '$lib/utility/reveal';
+
 	const testimonials = [
 		{
 			name: 'Shree Dental Speciality Hospital, Mumbai',
@@ -45,20 +47,21 @@
 		<div class="mb-16 border-t border-slate-200 pt-16">
 			<div class="flex flex-col items-end justify-between gap-8 md:flex-row">
 				<div class="max-w-2xl">
-					<div class="mb-4 inline-flex items-center gap-2 rounded-full bg-[#ad5389]/10 px-4 py-1">
-						<span class="text-[10px] font-black tracking-[0.2em] text-[#ad5389] uppercase"
+					<div class="mb-4 inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-1">
+						<span class="text-[10px] font-black tracking-[0.2em] text-brand uppercase"
 							>Success Stories</span
 						>
 					</div>
 					<h2 class="text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl">
-						Partnering with <span class="text-[#ad5389]">India's Finest</span> Hospitals
+						Partnering with <span class="text-brand">India's Finest</span> Hospitals
 					</h2>
 				</div>
 
 				<div class="flex gap-3">
 					<button
 						onclick={() => scroll('left')}
-						class="group flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white transition-all hover:border-[#ad5389] hover:text-[#ad5389]"
+						aria-label="Scroll testimonials left"
+						class="group flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white transition-all hover:border-brand hover:text-brand"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +77,8 @@
 					</button>
 					<button
 						onclick={() => scroll('right')}
-						class="group flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white transition-all hover:border-[#ad5389] hover:text-[#ad5389]"
+						aria-label="Scroll testimonials right"
+						class="group flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white transition-all hover:border-brand hover:text-brand"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -96,10 +100,11 @@
 			bind:this={scrollContainer}
 			class="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
 		>
-			{#each testimonials as t}
+			{#each testimonials as t, i}
 				<div class="w-[85%] shrink-0 snap-start md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
 					<div
-						class="group flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:border-[#ad5389]/30 hover:shadow-2xl hover:shadow-[#ad5389]/5"
+						class="group flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:border-brand/30 hover:shadow-2xl hover:shadow-brand/5"
+						use:reveal={{ delay: i * 80 }}
 					>
 						<div>
 							<div class="mb-6 flex gap-1">
@@ -118,7 +123,7 @@
 
 						<div class="flex items-center gap-4 border-t border-slate-100 pt-6">
 							<div
-								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#ad5389]/10 text-sm font-bold text-[#ad5389] uppercase"
+								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-sm font-bold text-brand uppercase"
 							>
 								{t.disease?.substring(0, 2)}
 							</div>
